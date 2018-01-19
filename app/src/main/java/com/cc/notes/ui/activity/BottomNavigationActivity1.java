@@ -51,8 +51,9 @@ public class BottomNavigationActivity1 extends AppCompatActivity {
     Fragment2 fragment2;
     Fragment3 fragment3;
     private Fragment fragment_now = null;
-    private TextView[] textViews;
-    private List<View> iv_list;
+//    private List<View> textViews;
+    private List<ImageView> iv_list;
+    private List<TextView> tv_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,15 +67,19 @@ public class BottomNavigationActivity1 extends AppCompatActivity {
 
     private void inint() {
         iv_list = new ArrayList<>();
-        textViews = new TextView[3];
+        tv_list = new ArrayList<>();
 
         iv_list.add(iv1);
         iv_list.add(iv2);
         iv_list.add(iv3);
 
-        textViews[0] = tv1;
-        textViews[1] = tv2;
-        textViews[2] = tv3;
+        tv_list.add(tv1);
+        tv_list.add(tv2);
+        tv_list.add(tv3);
+
+//        textViews[0] = tv1;
+//        textViews[1] = tv2;
+//        textViews[2] = tv3;
 
         changePageSelect(0);
         changePageFragment(R.id.ll_tab1);
@@ -88,24 +93,24 @@ public class BottomNavigationActivity1 extends AppCompatActivity {
     }
 
     /**
-     * 当点击导航栏时改变控件形态
+     * 选中的tab 和 没有选中的tab 的图标和字体颜色
      *
-     * @param index 选中控件的id
+     * @param index
      */
     public void changePageSelect(int index) {
         for (int i = 0; i < iv_list.size(); i++) {
             if (index == i) {
                 iv_list.get(i).setEnabled(false);
-                textViews[i].setTextColor(getResources().getColor(R.color.colorLightRed));
+                tv_list.get(i).setTextColor(getResources().getColor(R.color.colorLightRed));
             } else {
                 iv_list.get(i).setEnabled(true);
-                textViews[i].setTextColor(getResources().getColor(R.color.colorTextGrey));
+                tv_list.get(i).setTextColor(getResources().getColor(R.color.colorTextGrey));
             }
         }
     }
 
     /**
-     * 当点击导航栏时改变fragment
+     * 当点击导航栏时改变 fragment
      *
      * @param id
      */
@@ -152,8 +157,8 @@ public class BottomNavigationActivity1 extends AppCompatActivity {
             if (from == null) {
                 transaction.add(R.id.fl_fragment, to).show(to).commit();
             } else {
-                // 隐藏当前的fragment，add下一个fragment到Activity中
-                transaction.hide(from).add(R.id.fl_fragment, to).commitAllowingStateLoss();
+                // 隐藏当前的fragment，add下一个fragment到Activity中并显示
+                transaction.hide(from).add(R.id.fl_fragment, to).show(to).commitAllowingStateLoss();
             }
         } else {
             // 隐藏当前的fragment，显示下一个

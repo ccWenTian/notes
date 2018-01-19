@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.cc.notes.ui.activity.BottomNavigationActivity2">
+   >
 
-    <FrameLayout
-        android:id="@+id/fl_fragment"
+    <!--<FrameLayout-->
+        <!--android:id="@+id/fl_fragment"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_above="@+id/bottomNavigationView"-->
+        <!--/>-->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottomNavigationView"
-        />
+        android:layout_above="@+id/bottomNavigationView" />
+
+
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottomNavigationView"
@@ -22,5 +28,4 @@
         app:itemTextColor="@drawable/selector_bottom_navigation"
         app:menu="@menu/menu_bottom_navigation"
         />
-
 </android.support.percent.PercentRelativeLayout>
